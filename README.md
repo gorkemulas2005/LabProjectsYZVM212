@@ -90,5 +90,5 @@ Kod içerisinde **Seaborn ve Matplotlib** kullanılarak karmaşıklık matrisi �
 - Eğer özellikler **kategori bazlı (örn. kelime sayımları gibi)** olsaydı, Multinomial daha iyi olabilirdi.
 - Eğer **bütün özellikler 0 ve 1 değerlerinden oluşsaydı**, Bernoulli daha uygun olurdu.
 
-Bu projede **Gaussian Naive Bayes** en iyi sonucu verdiği için, tercih edilmesi önerilir. 🚀
+Bu projede **Gaussian Naive Bayes** en iyi sonucu verdiği için, tercih edilmesi önerilir.
 
