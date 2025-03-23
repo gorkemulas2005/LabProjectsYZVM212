@@ -10,7 +10,7 @@ Scikit-learn kütüphanesindeki Logistic Regression modelini kullanarak veri set
 Bu modelde, logistic regression modelinin parametreleri (katsayıları) için gradient descent (gradyan inişi) yöntemiyle optimizasyon yapıldı. Burada sigmoid fonksiyonu kullanılarak tahminler yapılır ve maximum likelihood estimation (MLE) prensipleriyle parametreler güncellenir. Bu, her iterasyonda parametrelerin hata fonksiyonunu minimize etmek için güncellenmesi anlamına gelir.
 
 Veri Seti
-Veri seti, çeşitli istatistiksel özellikler içeren (örneğin, variance, skewness, curtosis, entropy) dört özelliğe ve class etiketine sahip örneklerden oluşmaktadır. Veriler eğitim ve test olarak ikiye ayrılmıştır.
+Veri seti, çeşitli istatistiksel özellikler içeren (örneğin, variance, skewness, curtosis, entropy) dört özelliğe ve class etiketine sahip örneklerden oluşmaktadır. Veriler eğitim ve test olarak ikiye ayrılmıştır. (https://www.kaggle.com/datasets/davorbudimir/data-banknote-authentication)
 
 Örnek Veri Seti:
 variance	skewness	curtosis	entropy	class
@@ -70,102 +70,27 @@ Kopyala
 Düzenle
 [[174   9]
  [  7  70]]
-Metrikler ve Değerlendirme
-1. Accuracy (Doğruluk):
-Accuracy, modelin doğru tahminlerinin, tüm tahminlerin oranını temsil eder. Yani, doğru sınıflandırılan örneklerin tüm örneklere oranıdır. Formülü şu şekildedir:
-
-Accuracy
-=
-𝑇
-𝑃
-+
-𝑇
-𝑁
-𝑇
-𝑃
-+
-𝑇
-𝑁
-+
-𝐹
-𝑃
-+
-𝐹
-𝑁
-Accuracy= 
-TP+TN+FP+FN
-TP+TN
-​
  
-Burada TP (True Positive), TN (True Negative), FP (False Positive) ve FN (False Negative) terimleri confusion matrix'ten gelir.
+Metrikler ve Değerlendirme
 
+1. Accuracy (Doğruluk):
+Accuracy, modelin doğru tahminlerinin, tüm tahminlerin oranını temsil eder. Yani, doğru sınıflandırılan örneklerin tüm örneklere oranıdır.
 Scikit-learn modelinin doğruluğu 0.9690'dır.
-
 Elle yazılmış model ise 0.9239 doğruluğa sahiptir.
 
 2. Precision (Kesinlik):
 Precision, doğru şekilde pozitif sınıflandırılan örneklerin, model tarafından pozitif olarak sınıflandırılan tüm örneklere oranıdır. Yani, modelin pozitif tahminlerinin ne kadar doğru olduğuna bakar.
-
-Precision
-=
-𝑇
-𝑃
-𝑇
-𝑃
-+
-𝐹
-𝑃
-Precision= 
-TP+FP
-TP
-​
- 
 Scikit-learn modelinde precision değeri 0.9239'dur.
-
 Elle yazılmış modelde ise precision değeri 0.8543'tür.
 
 3. Recall (Duyarlılık):
 Recall, gerçek pozitiflerin doğru şekilde sınıflandırılan örneklere oranıdır. Yani, modelin tüm gerçek pozitifleri yakalama başarısını gösterir.
-
-Recall
-=
-𝑇
-𝑃
-𝑇
-𝑃
-+
-𝐹
-𝑁
-Recall= 
-TP+FN
-TP
-​
- 
 Scikit-learn modelinde recall değeri 0.9843'tür.
-
 Elle yazılmış modelde recall değeri 0.7944'tür.
 
 4. F1-Score:
 F1-Score, precision ve recall değerlerinin harmonik ortalamasıdır ve her iki metriği dengeleyerek modelin genel başarısını ölçer.
-
-𝐹
-1
-=
-2
-×
-Precision
-×
-Recall
-Precision
-+
-Recall
-F1=2× 
-Precision+Recall
-Precision×Recall
-​
- 
 Scikit-learn modelinde F1-Score değeri 0.9766'dır.
-
 Elle yazılmış modelde F1-Score değeri 0.8543'tür.
 
 5. Confusion Matrix (Karışıklık Matrisi):
@@ -173,18 +98,12 @@ Confusion matrix, modelin tahminlerinin doğruluğunu daha ayrıntılı bir şek
 
 Scikit-learn modelinin confusion matrix'i:
 
-lua
-Kopyala
-Düzenle
 [[180   3]
  [  2  75]]
 Bu, 180 doğru negatif, 75 doğru pozitif, 3 yanlış pozitif ve 2 yanlış negatif tahmin olduğunu gösterir.
 
 Elle yazılmış modelin confusion matrix'i:
 
-lua
-Kopyala
-Düzenle
 [[174   9]
  [  7  70]]
 Bu, 174 doğru negatif, 70 doğru pozitif, 9 yanlış pozitif ve 7 yanlış negatif tahmin olduğunu gösterir.
