@@ -91,6 +91,8 @@ Evet, küçük matrislerde hem `Custom` hem de `NumPy` aynı özdeğerleri ve do
 
 - **Karakteristik Denklem Karmaşıklığı:** 3x3 ve üstü matrislerde determinant üzerinden elde edilen denklemlerin çözümü analitik olarak zorlaşır.
 - **Boyut Uyumsuzluğu:** `A - λI` işlemi sırasında `broadcast` hatası oluşabilir. Örnek hata mesajı:  
+
+
   ```python
   operands could not be broadcast together with shapes (100,100) (2,2)
 
@@ -160,7 +162,7 @@ Karmaşık/gerçek sayılar ayrılır.
 
 Sonuç Python array’lerine dönüştürülerek döndürülür.
 
-🛠️ 3. El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
+ 3. El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
 Bu projede, yalnızca 2x2 matrisler için geçerli özel bir fonksiyon tanımlanmıştır. Bu fonksiyon:
 
 Matrisin izini (trace) ve determinantını (det) hesaplar.
