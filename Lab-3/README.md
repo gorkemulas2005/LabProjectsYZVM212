@@ -130,7 +130,7 @@ Doğrusal Dinamik Sistemler: Sistem kararlılığı özdeğerlerle incelenir.
 ChatGpt' nin konu hakkındaki açıklamaları
 https://www.geeksforgeeks.org/applications-of-eigenvalues-and-eigenvectors/
 
- 2. NumPy ile Özdeğer ve Özvektör Hesaplama
+ 3. NumPy ile Özdeğer ve Özvektör Hesaplama
  numpy.linalg.eig Fonksiyonu
 NumPy’nın linalg (linear algebra) modülündeki eig fonksiyonu, bir karesel matrisin özdeğerlerini ve özvektörlerini hesaplar.
 
@@ -162,7 +162,7 @@ Karmaşık/gerçek sayılar ayrılır.
 
 Sonuç Python array’lerine dönüştürülerek döndürülür.
 
- 3. El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
+ 3.1 El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
 Bu projede, yalnızca 2x2 matrisler için geçerli özel bir fonksiyon tanımlanmıştır. Bu fonksiyon:
 
 Matrisin izini (trace) ve determinantını (det) hesaplar.
