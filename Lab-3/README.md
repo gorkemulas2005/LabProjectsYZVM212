@@ -171,4 +171,5 @@ Karakök içinde negatif çıkarsa hata verir.
 Klasik çözüm formülüyle özdeğerleri bulur.
 
 λ= [Tr(A)± (Tr(A) ^2 −4⋅det(A))^1/2]/2
+
 ​(𝐴−𝜆𝐼)𝑣=0 denklemi çözülerek özvektör bulunur.
