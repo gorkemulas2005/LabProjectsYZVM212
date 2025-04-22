@@ -46,6 +46,7 @@ Her iki yöntem de doğru sonuçlar vermektedir. Küçük boyutlu matrislerde `C
 - Karakteristik denklemi çözülemez hâle gelir.
 - Özvektör bulma işleminde `A - λI` boyut uyumsuzluğu oluşur.
 - Python hata mesajı:  
+
   `operands could not be broadcast together with shapes (100,100) (2,2)`
 
 Bu nedenle yalnızca **NumPy** gibi hazır algoritmalar büyük boyutlu matrislerde verimli ve güvenilir çözümler sunabilir.
@@ -160,7 +161,7 @@ Karmaşık/gerçek sayılar ayrılır.
 
 Sonuç Python array’lerine dönüştürülerek döndürülür.
 
-🛠️ 3. El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
+ 3. El ile Özdeğer ve Özvektör Hesaplaması (custom_eigen_2x2)
 Bu projede, yalnızca 2x2 matrisler için geçerli özel bir fonksiyon tanımlanmıştır. Bu fonksiyon:
 
 Matrisin izini (trace) ve determinantını (det) hesaplar.
