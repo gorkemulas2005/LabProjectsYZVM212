@@ -1,4 +1,4 @@
-# Linear Regression Model Optimization - YZM212 Bahar 2024-2025
+# Linear Regression Model Optimization
 
 ## Genel Bakış
 Bu laboratuvar çalışmasında **Linear Regression (Doğrusal Regresyon)** model optimizasyonu yapılacaktır. İki farklı yöntem kullanılacaktır: **En Küçük Kareler Tahmini (Least Squares Estimation - LSE)** ve **Scikit-learn Linear Regression**. Amaç, her iki yöntemle de model eğitmek ve performanslarını **Mean Squared Error (MSE)**, **Mean Absolute Error (MAE)** ve **R-squared (R²)** gibi metriklerle karşılaştırmaktır.
