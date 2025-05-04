@@ -29,6 +29,8 @@ Modelin eğitilmesi için kullanılan veri seti, öğrencilerin çalışma alı�
 | 5                 | 52                  | Yes                            | 5               | 2                                     | 36.0                  |
 | 7                 | 75                  | No                             | 8               | 5                                     | 66.0                  |
 
+https://www.kaggle.com/datasets/nikhil7280/student-performance-multiple-linear-regression?resource=download
+
 **Veri Seti 2 - X ve Y Değerleri (Düz Regresyon)**
 
 | **X** | **Y**        |
@@ -38,6 +40,8 @@ Modelin eğitilmesi için kullanılan veri seti, öğrencilerin çalışma alı�
 | 3     | 5.222222     |
 | 4     | 5.888889     |
 | 5     | 6.555556     |
+
+https://www.kaggle.com/datasets/tanuprabhu/linear-regression-dataset
 
 ## Performans Karşılaştırması: İki Veri Seti
 
