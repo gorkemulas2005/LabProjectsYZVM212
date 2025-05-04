@@ -65,6 +65,9 @@ https://www.kaggle.com/datasets/tanuprabhu/linear-regression-dataset
 
 - **Scikit-learn Linear Regression**: Model, oldukça yüksek bir **R²** (0.988) ile mükemmel bir uyum sağlamaktadır. **MSE** değeri çok düşük olup modelin tahminleri çok iyi bir şekilde gerçek değerlerle örtüşmektedir. Eğitim süresi ise 0.017 saniye ile oldukça hızlıdır.
 - **Custom Linear Regression (NumPy)**: Modelin **R²** değeri 1.0 olup, mükemmel uyum sağlamakta. Ancak, çok küçük bir **MSE** değeri (yaklaşık sıfır) gözlemlenmiştir. Bu, modelin çok yüksek doğrulukla çalıştığını ancak bazı sayıların yuvarlanmasından kaynaklanmış olabilir. Eğitim süresi ise 0.001 saniye ile oldukça hızlıdır.
+- Scikit-learn Linear Regression: Bu model, genellikle doğrusal regresyon için optimize edilmiş, istatistiksel araçlarla donatılmış bir paket olan scikit-learn'ün bir parçasıdır. Bu kütüphane, bazı optimizasyon tekniklerini ve regularization (düzenleme) yöntemlerini otomatik olarak uygular. Yani, genellikle aşırı uyum yapmayı engelleyecek bazı mekanizmalar içerir.
+
+Custom Linear Regression (NumPy): Bu model ise sıfırdan yazıldığından, sadece temel doğrusal regresyon hesaplamalarına dayanır. Burada modelin karmaşıklığı, yalnızca doğrusal çözümün hesaplanmasıyla sınırlıdır ve modelin aşırı uyum yapma eğilimi daha yüksektir çünkü regularization gibi herhangi bir ek sınırlama yoktur. Bu nedenle, eğitim verisi üzerinde mükemmel sonuçlar alınabilir ancak test verisi üzerinde genellenebilirlik düşebilir. Bunu da Cross-Validation, Regularization vb. yöntemleri kullanarak çözümleyebiliriz.
 
 ### Veri Seti 2: X ve Y Değerleri (Düz Regresyon)
 
