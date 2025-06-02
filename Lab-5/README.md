@@ -1,121 +1,147 @@
-Logistic Regression Model Performansı Karşılaştırması
-Giriş
-Bu proje, iki farklı Logistic Regression modelinin performansını karşılaştırmayı amaçlamaktadır. Birinci model, Scikit-learn Logistic Regression kullanarak eğitim ve tahmin yaparken, ikinci model, gradient descent (Gradyan İnişi) yöntemiyle elle yazılmış Logistic Regression modelini kullanmaktadır. Her iki modelin doğruluk, eğitim süresi, tahmin süresi ve confusion matrix sonuçları karşılaştırılacaktır.
+# 🧠 Customer Churn Prediction using Neural Networks
 
-Kullanılan Yöntemler
-1. Scikit-learn Logistic Regression:
-Scikit-learn kütüphanesindeki Logistic Regression modelini kullanarak veri setini eğittik. Modelin performansını accuracy ve confusion matrix gibi metriklerle değerlendirdik.
+## 📌 Proje Amacı
+Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin etmeye yönelik bir sınıflandırma problemidir. Farklı aktivasyon fonksiyonlarıyla çalışan MLP modelleri (hem Scikit-learn tabanlı hem de custom sinir ağı mimarisi) karşılaştırılmıştır. Performans değerlendirmesi için şu metrikler kullanılmıştır:
 
-2. Elle Yazılmış Logistic Regression (Gradient Descent):
-Bu modelde, logistic regression modelinin parametreleri (katsayıları) için gradient descent (gradyan inişi) yöntemiyle optimizasyon yapıldı. Burada sigmoid fonksiyonu kullanılarak tahminler yapılır ve maximum likelihood estimation (MLE) prensipleriyle parametreler güncellenir. Bu, her iterasyonda parametrelerin hata fonksiyonunu minimize etmek için güncellenmesi anlamına gelir.
+- Accuracy
+- Log Loss
+- Precision
+- Recall
+- F1-Score
+- Confusion Matrix
 
-Veri Seti
-Veri seti, çeşitli istatistiksel özellikler içeren (örneğin, variance, skewness, curtosis, entropy) dört özelliğe ve class etiketine sahip örneklerden oluşmaktadır. Veriler eğitim ve test olarak ikiye ayrılmıştır. (https://www.kaggle.com/datasets/davorbudimir/data-banknote-authentication)
+---
 
-Örnek Veri Seti:
-variance	skewness	curtosis	entropy	class
-3.62160	8.6661	-2.8073	-0.44699	0
-4.54590	8.1674	-2.4586	-1.46210	0
-3.86600	-2.6383	1.9242	0.10645	0
-3.45660	9.5228	-4.0112	-3.59440	0
-0.32924	-4.4552	4.5718	-0.98880	0
-Veri, scaled formda aşağıdaki gibi dönüştürülmüştür:
+## 📊 Veri Kümesi Özeti
 
-variance	skewness	curtosis	entropy
--0.6392	1.8056	-0.1884	-3.051
-0.8219	0.8524	-0.5941	0.6035
--1.6570	-1.6333	2.3839	-0.3424
-1.7289	0.3286	-0.7481	1.0844
-0.1140	0.2060	0.3251	0.5347
-Model Performansları
-1. Scikit-learn Logistic Regression Performansı:
-Accuracy: 0.9690
+- **Gözlem sayısı:** 10.000
+- **Hedef değişken:** `Exited` (1: Ayrıldı, 0: Kaldı)
 
-Recall: 0.9843
+### 🎯 Sınıf Dağılımı:
+- `Exited = 0 (Kalıcı)`: 7.963 (%79.63)
+- `Exited = 1 (Ayrılan)`: 2.037 (%20.37)
 
-Precision: 0.9239
+> **Not:** Veri seti dengesiz olduğundan dolayı accuracy yerine recall, precision ve F1-score daha anlamlıdır.
 
-F1-Score: 0.9766
+### 🔍 Veri Kümesinin İlk 5 Satırı
 
-2. Elle Yazılmış Logistic Regression Performansı:
-Accuracy: 0.9239
+| RowNumber | CustomerId | Surname  | CreditScore | Geography | Gender | Age | Tenure | Balance   | NumOfProducts | HasCrCard | IsActiveMember | EstimatedSalary | Exited |
+|-----------|------------|----------|-------------|-----------|--------|-----|--------|-----------|----------------|-----------|----------------|------------------|--------|
+| 1         | 15634602   | Hargrave | 619         | France    | Female | 42  | 2      | 0.00      | 1              | 1         | 1              | 101348.88        | 1      |
+| 2         | 15647311   | Hill     | 608         | Spain     | Female | 41  | 1      | 83807.86  | 1              | 0         | 1              | 112542.58        | 0      |
+| 3         | 15619304   | Onio     | 502         | France    | Female | 42  | 8      | 159660.80 | 3              | 1         | 0              | 113931.57        | 1      |
+| 4         | 15701354   | Boni     | 699         | France    | Female | 39  | 1      | 0.00      | 2              | 0         | 0              | 93826.63         | 0      |
+| 5         | 15737888   | Mitchell | 850         | Spain     | Female | 43  | 2      | 125510.82 | 1              | 1         | 1              | 79084.10         | 0      |
 
-Recall: 0.7944
+---
 
-Precision: 0.8543
+## ⚙️ Veri Ön İşleme Adımları
 
-F1-Score: 0.8543
+- `RowNumber`, `CustomerId`, `Surname` sütunları kaldırıldı.
+- `Gender`, `Geography`: `LabelEncoder` ile sayısallaştırıldı.
+- Sayısal sütunlar: `StandardScaler` ile normalize edildi.
+- %80 / %20 eğitim/test ayrımı stratified olarak yapıldı.
 
-Eğitim ve Tahmin Süreleri:
-Scikit-learn Logistic Regression:
-Eğitim süresi: 0.0050 saniye
+---
 
-Tahmin süresi: 0.0024 saniye
+## 🔧 1. Scikit-learn `MLPClassifier` Sonuçları
 
-Elle Yazılmış Logistic Regression:
-Eğitim süresi: 0.0100 saniye
+- **Model yapısı:** 2 gizli katman (64, 32)
+- **Optimizasyon:** Adam, `max_iter=500`, `early_stopping=True`
+- **Çıkış aktivasyonu:** `logistic` (sigmoid)
 
-Tahmin süresi: 0.0040 saniye
+| Aktivasyon | Accuracy | F1-Score | Log Loss | Eğitim Süresi (sn) |
+|------------|----------|----------|----------|---------------------|
+| Tanh       | 0.8595   | 0.6003   | 0.3428   | 4.52                |
+| Logistic   | 0.8590   | 0.5621   | 0.3440   | 14.68               |
+| ReLU       | 0.8555   | 0.5601   | 0.3498   | 2.55                |
 
-Confusion Matrix:
-Scikit-learn Logistic Regression:
-lua
-Kopyala
-Düzenle
-[[180   3]
- [  2  75]]
-Elle Yazılmış Logistic Regression:
-lua
-Kopyala
-Düzenle
-[[174   9]
- [  7  70]]
- 
-Metrikler ve Değerlendirme
+### 🔍 Gözlemler:
 
-1. Accuracy (Doğruluk):
-Accuracy, modelin doğru tahminlerinin, tüm tahminlerin oranını temsil eder. Yani, doğru sınıflandırılan örneklerin tüm örneklere oranıdır.
-Scikit-learn modelinin doğruluğu 0.9690'dır.
-Elle yazılmış model ise 0.9239 doğruluğa sahiptir.
+- Tanh ile en yüksek F1-score ve en düşük log loss elde edilmiştir.
+- Eğitim süresi açısından ReLU çok hızlı ancak F1 düşüktür.
+- Logistic iyi precision verse de recall düşüktür (müşteri kaybını kaçırabilir!).
 
-2. Precision (Kesinlik):
-Precision, doğru şekilde pozitif sınıflandırılan örneklerin, model tarafından pozitif olarak sınıflandırılan tüm örneklere oranıdır. Yani, modelin pozitif tahminlerinin ne kadar doğru olduğuna bakar.
-Scikit-learn modelinde precision değeri 0.9239'dur.
-Elle yazılmış modelde ise precision değeri 0.8543'tür.
+### 📋 Tanh Aktivasyonu Detayları:
 
-3. Recall (Duyarlılık):
-Recall, gerçek pozitiflerin doğru şekilde sınıflandırılan örneklere oranıdır. Yani, modelin tüm gerçek pozitifleri yakalama başarısını gösterir.
-Scikit-learn modelinde recall değeri 0.9843'tür.
-Elle yazılmış modelde recall değeri 0.7944'tür.
+- **Accuracy:** 0.8595
+- **Precision:** 0.7128
+- **Recall:** 0.5184
+- **F1-Score:** 0.6003
 
-4. F1-Score:
-F1-Score, precision ve recall değerlerinin harmonik ortalamasıdır ve her iki metriği dengeleyerek modelin genel başarısını ölçer.
-Scikit-learn modelinde F1-Score değeri 0.9766'dır.
-Elle yazılmış modelde F1-Score değeri 0.8543'tür.
+#### Confusion Matrix:
 
-5. Confusion Matrix (Karışıklık Matrisi):
-Confusion matrix, modelin tahminlerinin doğruluğunu daha ayrıntılı bir şekilde görmek için kullanılır. Her satır, gerçek sınıfları, her sütun ise modelin tahmin ettiği sınıfları gösterir.
+[[1508 85]
+[ 196 211]]
 
-Scikit-learn modelinin confusion matrix'i:
 
-[[180   3]
- [  2  75]]
-Bu, 180 doğru negatif, 75 doğru pozitif, 3 yanlış pozitif ve 2 yanlış negatif tahmin olduğunu gösterir.
+> **Yorum:** Pozitif sınıf (Exited) iyi yakalanmakta; yanlış negatif (196) hâlâ var ama genel F1 tatmin edici.
 
-Elle yazılmış modelin confusion matrix'i:
+---
 
-[[174   9]
- [  7  70]]
-Bu, 174 doğru negatif, 70 doğru pozitif, 9 yanlış pozitif ve 7 yanlış negatif tahmin olduğunu gösterir.
+## 🧱 2. Custom Neural Network Sonuçları
 
-6. Estimation (Tahmin):
-Bu projede kullanılan estimation, modelin doğru parametreleri (ağırlıkları) öğrenme sürecine işaret eder. Maximum likelihood estimation (MLE) yaklaşımını kullanarak, modelin parametrelerini gradient descent yöntemiyle iteratif olarak güncelledik. Bu, her iterasyonda modelin doğruluğunu artırmaya yönelik bir optimizasyon sürecidir.
+- **Yapı:** 2 gizli katman
+- **Epoch sayısı:** 500
+- **Çıkış aktivasyonu:** Sigmoid, **threshold = 0.3** (`default = 0.5` yerine)
 
-Elle yazılmış Logistic Regression modeli, gradyan inişi ile likelihood fonksiyonunu en yüksek yapacak parametreleri bulmak için çalışır. Her güncelleme, parametrelerin daha doğru bir tahmin yapmasını sağlar.
+| Aktivasyon + Output | Accuracy | F1-Score | Eğitim Süresi (sn) | Final Loss |
+|---------------------|----------|----------|---------------------|-------------|
+| ReLU + Sigmoid      | 0.822    | 0.5870   | 1.74                | 0.3465      |
+| Sigmoid + Sigmoid   | 0.718    | 0.4882   | 3.39                | 0.4363      |
+| Tanh + Sigmoid      | 0.8355   | 0.4946   | 8.04                | 0.4071      |
 
-Sonuçlar
-Scikit-learn Logistic Regression modelinin doğruluğu daha yüksek (accuracy = 0.9690) ve recall ile precision değerleri de daha iyi.
+### 🧮 Confusion Matrix (Tanh + Sigmoid, threshold = 0.3):
 
-Elle yazılmış model biraz daha düşük performans gösteriyor. Bunun nedeni, gradient descent algoritmasının daha fazla iterasyona ihtiyaç duyması ve parametrelerin tam olarak optimum çözüme ulaşamaması olabilir.
+[[1510 97]
+[ 232 161]]
 
-Eğitim süresi açısından, Scikit-learn modeli çok daha hızlı çalışırken, elle yazılmış modelde biraz daha uzun süreler alınmıştır.
+
+### 📌 Yorumlar:
+
+- **ReLU + Sigmoid**, hem F1-skorda hem de final loss’ta en iyi sonucu verdi.
+- **Sigmoid + Sigmoid**, en kötü performansa sahip model.
+- **Tanh**, accuracy’de önde ama recall çok düşük → ayrılan müşterileri kaçırma riski.
+
+---
+
+## 📌 Karşılaştırmalı Yorumlar ve Sonuç
+
+| Model                  | Accuracy | Precision | Recall | F1-Score | Log Loss | Eğitim Süresi |
+|------------------------|----------|-----------|--------|----------|----------|----------------|
+| Scikit-learn (Tanh)    | 0.8595   | 0.7128    | 0.5184 | 0.6003   | 0.3428   | 4.52 s          |
+| Scikit-learn (Logistic)| 0.8590   | 0.7637    | 0.4447 | 0.5621   | 0.3440   | 14.68 s         |
+| Scikit-learn (ReLU)    | 0.8555   | 0.7360    | 0.4521 | 0.5601   | 0.3498   | 2.55 s          |
+| Custom (ReLU+Sigmoid)  | 0.822    | 0.5394    | 0.6438 | 0.5870   | 0.3465   | 1.74 s          |
+
+---
+
+## ✅ Genel Değerlendirme
+
+- **Recall açısından** custom ReLU+Sigmoid modeli, Scikit-learn modellerini geride bırakıyor → müşteri kaybını yakalama açısından değerli.
+- **Tanh (Scikit-learn)** modeli ise **dengeli performans** açısından en başarılı model.
+- **Eğitim süresi** açısından custom modeller oldukça verimli, ancak **hassasiyet (precision)** ve doğrulukta bazı zayıflıkları var.
+
+---
+
+## ⚠️ Threshold = 0.3 Seçimi ile:
+
+- Pozitif sınıfın daha fazla yakalanması (recall ↑) sağlanıyor,
+- Ancak yanlış pozitif (false positive) artabileceğinden precision düşebiliyor.
+
+---
+
+## 🔚 Sonuç ve Öneriler
+
+İdeal model, kullanım amacına göre değişir:
+
+- Eğer **müşteri kaybını önlemek öncelikliyse**, recall yüksek olan modeller (custom ReLU+Sigmoid) tercih edilebilir.
+- Eğer **yanlış alarm maliyeti yüksekse**, precision yüksek modeller (Scikit-learn Logistic) daha uygundur.
+
+### 🔧 Gelecek Geliştirme Önerileri:
+
+- Veri dengesizliğini düzeltmek için:
+  - SMOTE
+  - `class_weights`
+  - Focal Loss
+- Eğitim süresi kritikse custom modeller tercih edilebilir; ancak model doğruluğu açısından scikit-learn MLP daha kararlı gözükmektedir.
