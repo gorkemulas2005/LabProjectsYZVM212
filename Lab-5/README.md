@@ -1,6 +1,6 @@
-# 🧠 Customer Churn Prediction using Neural Networks
+#  Customer Churn Prediction using Neural Networks
 
-## 📌 Proje Amacı
+##  Proje Amacı
 Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin etmeye yönelik bir sınıflandırma problemidir. Farklı aktivasyon fonksiyonlarıyla çalışan MLP modelleri (hem Scikit-learn tabanlı hem de custom sinir ağı mimarisi) karşılaştırılmıştır. Performans değerlendirmesi için şu metrikler kullanılmıştır:
 
 - Accuracy
@@ -12,18 +12,19 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## 📊 Veri Kümesi Özeti
+##  Veri Kümesi Özeti
 
 - **Gözlem sayısı:** 10.000
 - **Hedef değişken:** `Exited` (1: Ayrıldı, 0: Kaldı)
 
-### 🎯 Sınıf Dağılımı:
+###  Sınıf Dağılımı:
 - `Exited = 0 (Kalıcı)`: 7.963 (%79.63)
 - `Exited = 1 (Ayrılan)`: 2.037 (%20.37)
 
 > **Not:** Veri seti dengesiz olduğundan dolayı accuracy yerine recall, precision ve F1-score daha anlamlıdır.
 
-### 🔍 Veri Kümesinin İlk 5 Satırı
+###  Veri Kümesinin İlk 5 Satırı
+- https://www.kaggle.com/datasets/shubh0799/churn-modelling
 
 | RowNumber | CustomerId | Surname  | CreditScore | Geography | Gender | Age | Tenure | Balance   | NumOfProducts | HasCrCard | IsActiveMember | EstimatedSalary | Exited |
 |-----------|------------|----------|-------------|-----------|--------|-----|--------|-----------|----------------|-----------|----------------|------------------|--------|
@@ -35,7 +36,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## ⚙️ Veri Ön İşleme Adımları
+##  Veri Ön İşleme Adımları
 
 - `RowNumber`, `CustomerId`, `Surname` sütunları kaldırıldı.
 - `Gender`, `Geography`: `LabelEncoder` ile sayısallaştırıldı.
@@ -44,7 +45,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## 🔧 1. Scikit-learn `MLPClassifier` Sonuçları
+##  1. Scikit-learn `MLPClassifier` Sonuçları
 
 - **Model yapısı:** 2 gizli katman (64, 32)
 - **Optimizasyon:** Adam, `max_iter=500`, `early_stopping=True`
@@ -56,13 +57,13 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 | Logistic   | 0.8590   | 0.5621   | 0.3440   | 14.68               |
 | ReLU       | 0.8555   | 0.5601   | 0.3498   | 2.55                |
 
-### 🔍 Gözlemler:
+###  Gözlemler:
 
 - Tanh ile en yüksek F1-score ve en düşük log loss elde edilmiştir.
 - Eğitim süresi açısından ReLU çok hızlı ancak F1 düşüktür.
 - Logistic iyi precision verse de recall düşüktür (müşteri kaybını kaçırabilir!).
 
-### 📋 Tanh Aktivasyonu Detayları:
+###  Tanh Aktivasyonu Detayları:
 
 - **Accuracy:** 0.8595
 - **Precision:** 0.7128
@@ -79,7 +80,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## 🧱 2. Custom Neural Network Sonuçları
+##  2. Custom Neural Network Sonuçları
 
 - **Yapı:** 2 gizli katman
 - **Epoch sayısı:** 500
@@ -91,13 +92,13 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 | Sigmoid + Sigmoid   | 0.718    | 0.4882   | 3.39                | 0.4363      |
 | Tanh + Sigmoid      | 0.8355   | 0.4946   | 8.04                | 0.4071      |
 
-### 🧮 Confusion Matrix (Tanh + Sigmoid, threshold = 0.3):
+###  Confusion Matrix (Tanh + Sigmoid, threshold = 0.3):
 
 [[1510 97]
 [ 232 161]]
 
 
-### 📌 Yorumlar:
+###  Yorumlar:
 
 - **ReLU + Sigmoid**, hem F1-skorda hem de final loss’ta en iyi sonucu verdi.
 - **Sigmoid + Sigmoid**, en kötü performansa sahip model.
@@ -105,7 +106,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## 📌 Karşılaştırmalı Yorumlar ve Sonuç
+##  Karşılaştırmalı Yorumlar ve Sonuç
 
 | Model                  | Accuracy | Precision | Recall | F1-Score | Log Loss | Eğitim Süresi |
 |------------------------|----------|-----------|--------|----------|----------|----------------|
@@ -116,7 +117,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## ✅ Genel Değerlendirme
+##  Genel Değerlendirme
 
 - **Recall açısından** custom ReLU+Sigmoid modeli, Scikit-learn modellerini geride bırakıyor → müşteri kaybını yakalama açısından değerli.
 - **Tanh (Scikit-learn)** modeli ise **dengeli performans** açısından en başarılı model.
@@ -124,21 +125,21 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ---
 
-## ⚠️ Threshold = 0.3 Seçimi ile:
+##  Threshold = 0.3 Seçimi ile:
 
 - Pozitif sınıfın daha fazla yakalanması (recall ↑) sağlanıyor,
 - Ancak yanlış pozitif (false positive) artabileceğinden precision düşebiliyor.
 
 ---
 
-## 🔚 Sonuç ve Öneriler
+##  Sonuç ve Öneriler
 
 İdeal model, kullanım amacına göre değişir:
 
 - Eğer **müşteri kaybını önlemek öncelikliyse**, recall yüksek olan modeller (custom ReLU+Sigmoid) tercih edilebilir.
 - Eğer **yanlış alarm maliyeti yüksekse**, precision yüksek modeller (Scikit-learn Logistic) daha uygundur.
 
-### 🔧 Gelecek Geliştirme Önerileri:
+###  Gelecek Geliştirme Önerileri:
 
 - Veri dengesizliğini düzeltmek için:
   - SMOTE
