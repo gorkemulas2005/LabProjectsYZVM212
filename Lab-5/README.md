@@ -103,17 +103,18 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ###  Confusion Matrix:
 **ReLU**
+[[1407 200]
+[ 207 186]]
 
-[[1407  200]
- [ 207  186]]
 **Tanh**
+[[1468 139]
+[ 244 149]]
 
- [[1468  139]
- [ 244  149]]
- **Sigmoid**
- [[1337  270]
- [ 178  215]]
- 
+**Sigmoid**
+[[1337 270]
+[ 178 215]]
+
+
 ###  Yorumlar:
 
 - **ReLU + Sigmoid**, hem F1-skorda hem de final loss’ta en iyi sonucu verdi.
