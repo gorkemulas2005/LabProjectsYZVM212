@@ -71,15 +71,15 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 - **F1-Score:** 0.6003
 
 #### Confusion Matrix:
-**Tanh**
-[[1508 85]
-[ 196 211]]
-**Logistic**
-[[1537   56]
- [ 226  181]]
- **ReLU**
- [[1527   66]
- [ 223  184]]
+##Tanh
+-[[1508 85]
+-[ 196 211]]
+##Logistic
+-[[1537   56]
+- [ 226  181]]
+ ## ReLU
+ -[[1527   66]
+- [ 223  184]]
 
 
 > **Yorum:** Pozitif sınıf (Exited) iyi yakalanmakta; yanlış negatif (196) hâlâ var ama genel F1 tatmin edici.
