@@ -51,11 +51,11 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 - **Optimizasyon:** Adam, `max_iter=500`, `early_stopping=True`
 - **Çıkış aktivasyonu:** `logistic` (sigmoid)
 
-| Aktivasyon | Accuracy | F1-Score | Log Loss | Eğitim Süresi (sn) |
-|------------|----------|----------|----------|---------------------|
-| Tanh       | 0.8595   | 0.6003   | 0.3428   | 4.52                |
-| Logistic   | 0.8590   | 0.5621   | 0.3440   | 14.68               |
-| ReLU       | 0.8555   | 0.5601   | 0.3498   | 2.55                |
+| Aktivasyon | Accuracy | Precision | Recall | F1-Score | Log Loss | Eğitim Süresi (sn) |
+|------------|----------|-----------|--------|----------|----------|---------------------|
+| Tanh       | 0.8595   | 0.7128    | 0.5184 | 0.6003   | 0.3428   | 4.52                |
+| Logistic   | 0.8590   | 0.7637    | 0.4447 | 0.5621   | 0.3440   | 14.68               |
+| ReLU       | 0.8555   | 0.7360    | 0.4521 | 0.5601   | 0.3498   | 2.55                |
 
 ###  Gözlemler:
 
@@ -71,9 +71,15 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 - **F1-Score:** 0.6003
 
 #### Confusion Matrix:
-
+**Tanh**
 [[1508 85]
 [ 196 211]]
+**Logistic**
+[[1537   56]
+ [ 226  181]]
+ **ReLU**
+ [[1527   66]
+ [ 223  184]]
 
 
 > **Yorum:** Pozitif sınıf (Exited) iyi yakalanmakta; yanlış negatif (196) hâlâ var ama genel F1 tatmin edici.
@@ -87,18 +93,26 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 - **Epoch sayısı:** 500
 - **Çıkış aktivasyonu:** Sigmoid, **threshold = 0.3, 0.22, 0.4** (`default = 0.5` yerine)
 
-| Aktivasyon + Output | Accuracy | F1-Score | Eğitim Süresi (sn) | Final Loss |
-|---------------------|----------|----------|---------------------|-------------|
-| ReLU + Sigmoid      | 0.822    | 0.5870   | 1.74                | 0.3465      |
-| Sigmoid + Sigmoid   | 0.718    | 0.4882   | 3.39                | 0.4363      |
-| Tanh + Sigmoid      | 0.8355   | 0.4946   | 8.04                | 0.4071      |
-
-###  Confusion Matrix (Tanh + Sigmoid, threshold = 0.3):
-
-[[1510 97]
-[ 232 161]]
+| Aktivasyon + Output | Accuracy | Precision | Recall  | F1-Score | Eğitim Süresi (sn) | Final Loss |
+|---------------------|----------|-----------|---------|----------|---------------------|------------|
+| ReLU + Sigmoid      | 0.7965   | 0.4819    | 0.4733  | 0.4775   | 1.77                | 0.4019     |
+| Sigmoid + Sigmoid   | 0.7760   | 0.4433    | 0.5471  | 0.4897   | 3.30                | 0.4441     |
+| Tanh + Sigmoid      | 0.8085   | 0.5174    | 0.3791  | 0.4376   | 7.46                | 0.4202     |
 
 
+###  Confusion Matrix:
+**ReLU**
+
+[[1407  200]
+ [ 207  186]]
+**Tanh**
+
+ [[1468  139]
+ [ 244  149]]
+ **Sigmoid**
+ [[1337  270]
+ [ 178  215]]
+ 
 ###  Yorumlar:
 
 - **ReLU + Sigmoid**, hem F1-skorda hem de final loss’ta en iyi sonucu verdi.
@@ -110,11 +124,14 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 ##  Karşılaştırmalı Yorumlar ve Sonuç
 
 | Model                  | Accuracy | Precision | Recall | F1-Score | Log Loss | Eğitim Süresi |
-|------------------------|----------|-----------|--------|----------|----------|----------------|
-| Scikit-learn (Tanh)    | 0.8595   | 0.7128    | 0.5184 | 0.6003   | 0.3428   | 4.52 s          |
-| Scikit-learn (Logistic)| 0.8590   | 0.7637    | 0.4447 | 0.5621   | 0.3440   | 14.68 s         |
-| Scikit-learn (ReLU)    | 0.8555   | 0.7360    | 0.4521 | 0.5601   | 0.3498   | 2.55 s          |
-| Custom (ReLU+Sigmoid)  | 0.822    | 0.5394    | 0.6438 | 0.5870   | 0.3465   | 1.74 s          |
+|------------------------|----------|-----------|--------|----------|----------|---------------|
+| Scikit-learn (Tanh)    | 0.8595   | 0.7128    | 0.5184 | 0.6003   | 0.3428   | 4.52 s        |
+| Scikit-learn (Logistic)| 0.8590   | 0.7637    | 0.4447 | 0.5621   | 0.3440   | 14.68 s       |
+| Scikit-learn (ReLU)    | 0.8555   | 0.7360    | 0.4521 | 0.5601   | 0.3498   | 2.55 s        |
+| Custom (ReLU+Sigmoid)  | 0.7965   | 0.4819    | 0.4733 | 0.4775   | 0.4019   | 1.77 s        |
+| Custom (Sigmoid+Sigmoid)| 0.7760  | 0.4433    | 0.5471 | 0.4897   | 0.4441   | 3.30 s        |
+| Custom (Tanh+Sigmoid)  | 0.8085   | 0.5174    | 0.3791 | 0.4376   | 0.4202   | 7.46 s        |
+
 
 ---
 
