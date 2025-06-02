@@ -166,3 +166,29 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
   - `class_weights`
   - Focal Loss
 - Eğitim süresi kritikse custom modeller tercih edilebilir; ancak model doğruluğu açısından scikit-learn MLP daha kararlı gözükmektedir.
+
+
+
+- numpy: Sayısal hesaplamalar ve matris işlemleri için.
+
+-pandas: Veri setlerinin okunması ve işlenmesi için.
+
+-matplotlib ve seaborn: Veri görselleştirme için.
+
+-time: Kodun çalışma süresini ölçmek için.
+
+-sklearn.preprocessing: Verilerin ön işlenmesi için (etiketleme, standartlaştırma).
+
+-https://www.youtube.com/watch?v=mlk0rddP3L4&list=PLuhqtP7jdD8CftMk831qdE8BlIteSaNzD (Back and Front propagation)
+
+-sklearn.model_selection: Veri setinin eğitim ve test olarak bölünmesi için.
+
+### Yararlandığım Kaynaklar
+-https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+-https://www.youtube.com/watch?v=Tb23YtZ92AE
+
+-https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+
+-sklearn.neural_network: Çok katmanlı algılayıcı (MLP) modelinin oluşturulması için.(Karşılaştırma yaptığım diğer kütüphanelerden yararlandığım proje için)
+
+-sklearn.metrics: Model performansını değerlendirmek için (confusion matrix, accuracy, precision, recall, f1-score, log loss vb.).
