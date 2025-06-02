@@ -46,7 +46,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 ---
 
 ##  1. Scikit-learn `MLPClassifier` Sonuçları
-
+- **Karşılaştığım Problemler** Yapılan kademeli azalma sayısı log loss'u düşürmeye yeterli değildi 300'den 500'e çekerek minimum lossu bulmuş oldum.
 - **Model yapısı:** 2 gizli katman (64, 32)
 - **Optimizasyon:** Adam, `max_iter=500`, `early_stopping=True`
 - **Çıkış aktivasyonu:** `logistic` (sigmoid)
@@ -82,9 +82,10 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 ##  2. Custom Neural Network Sonuçları
 
+- **Karşılaştığım Problemler** CustomNN için threshold eklemek zorunda kaldım çünkü tahmin etmem gereken exited labelın mean value su çok düşüktü ben de rastgele thresholdlar ile anlamlı bir sonuç elde edip 0 olan confusion matrix verilerini düzeltmeyi hedefledim.
 - **Yapı:** 2 gizli katman
 - **Epoch sayısı:** 500
-- **Çıkış aktivasyonu:** Sigmoid, **threshold = 0.3** (`default = 0.5` yerine)
+- **Çıkış aktivasyonu:** Sigmoid, **threshold = 0.3, 0.22, 0.4** (`default = 0.5` yerine)
 
 | Aktivasyon + Output | Accuracy | F1-Score | Eğitim Süresi (sn) | Final Loss |
 |---------------------|----------|----------|---------------------|-------------|
