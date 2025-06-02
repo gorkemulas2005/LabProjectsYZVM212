@@ -169,6 +169,11 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 
 
+
+### Yararlandığım Kaynaklar ve Projeler için Python Kütüphaneleri
+-https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
+-https://www.youtube.com/watch?v=Tb23YtZ92AE
+
 - numpy: Sayısal hesaplamalar ve matris işlemleri için.
 
 -pandas: Veri setlerinin okunması ve işlenmesi için.
@@ -183,12 +188,7 @@ Bu proje, bir bankanın müşteri verileriyle müşteri kaybını (churn) tahmin
 
 -sklearn.model_selection: Veri setinin eğitim ve test olarak bölünmesi için.
 
-### Yararlandığım Kaynaklar
--https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
--https://www.youtube.com/watch?v=Tb23YtZ92AE
-
--https://machinelearningmastery.com/implement-backpropagation-algorithm-scratch-python/
-
 -sklearn.neural_network: Çok katmanlı algılayıcı (MLP) modelinin oluşturulması için.(Karşılaştırma yaptığım diğer kütüphanelerden yararlandığım proje için)
 
 -sklearn.metrics: Model performansını değerlendirmek için (confusion matrix, accuracy, precision, recall, f1-score, log loss vb.).
+
